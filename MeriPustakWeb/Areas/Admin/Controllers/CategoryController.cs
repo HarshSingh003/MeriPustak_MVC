@@ -8,6 +8,7 @@ using System.Data.Common;
 
 namespace MeriPustakWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -48,8 +49,6 @@ namespace MeriPustakWeb.Areas.Admin.Controllers
                 return NotFound();
             }
             Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
-            //Category? categoryFromDb1 = _db.Categories.GetFirstOrDefault(u => u.Id == id);
-            //Category? categoryFromDb2 = _db.Categories.Where(u => u.Id == id).FirstOrDefault;
 
             if (categoryFromDb == null)
             {

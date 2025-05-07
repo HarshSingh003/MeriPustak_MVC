@@ -1,4 +1,6 @@
 using MeriPustak.DataAccess.Data;
+using MeriPustak.DataAccesss.Repository.IRepository;
+using MeriPustak.DataAccesss.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,10 @@ builder.Services.AddDbContext<MeriPustakDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("dbcs"));
 });
+
+// Add services for repositories
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
 var app = builder.Build();
 
@@ -31,6 +37,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
