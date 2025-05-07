@@ -1,7 +1,16 @@
+using MeriPustak.DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add database context 
+builder.Services.AddDbContext<MeriPustakDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("dbcs"));
+});
 
 var app = builder.Build();
 
