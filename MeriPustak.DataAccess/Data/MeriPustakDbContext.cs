@@ -1,9 +1,10 @@
 ﻿using MeriPustak.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace MeriPustak.DataAccess.Data
 {
-    public class MeriPustakDbContext : DbContext
+    public class MeriPustakDbContext : IdentityDbContext
     {
         public MeriPustakDbContext(DbContextOptions<MeriPustakDbContext> options) : base(options)
         {
@@ -11,6 +12,8 @@ namespace MeriPustak.DataAccess.Data
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<MeriPustakUser> MeriPustakUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
