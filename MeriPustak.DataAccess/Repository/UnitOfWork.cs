@@ -1,4 +1,6 @@
 ﻿using MeriPustak.DataAccess.Data;
+using MeriPustak.DataAccess.Repository;
+using MeriPustak.DataAccess.Repository.IRepository;
 using MeriPustak.DataAccesss.Repository.IRepository;
 using System;
 using System.Collections.Generic;
@@ -13,11 +15,13 @@ namespace MeriPustak.DataAccesss.Repository
         private readonly MeriPustakDbContext _db;
         public ICategoryRepository Category { get; private set; }
         public IProductRepository Product { get; private set; }
+        public ICompanyRepository Company { get; private set; }
         public UnitOfWork(MeriPustakDbContext db)
         {
             _db = db;
             Category = new CategoryRepository(_db);
             Product = new ProductRepository(_db);
+            Company = new CompanyRepository(_db);
         }
 
 

@@ -3,6 +3,7 @@ using System;
 using MeriPustak.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MeriPustak.DataAccess.Migrations
 {
     [DbContext(typeof(MeriPustakDbContext))]
-    partial class MeriPustakDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250510085353_AddCompanyTableInDB")]
+    partial class AddCompanyTableInDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,38 +96,6 @@ namespace MeriPustak.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "Tech City",
-                            Name = "Tech Solution",
-                            PhoneNumber = "6669990000",
-                            PostalCode = "12121",
-                            State = "IL",
-                            StreetAddress = "123 Tech St"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            City = "Vid City",
-                            Name = "Vivid Books",
-                            PhoneNumber = "7779990000",
-                            PostalCode = "66666",
-                            State = "IL",
-                            StreetAddress = "999 Vid St"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            City = "Lala land",
-                            Name = "Readers Club",
-                            PhoneNumber = "1113335555",
-                            PostalCode = "99999",
-                            State = "NY",
-                            StreetAddress = "999 Main St"
-                        });
                 });
 
             modelBuilder.Entity("MeriPustak.Models.Product", b =>
